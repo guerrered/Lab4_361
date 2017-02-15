@@ -1,5 +1,6 @@
-/test.class
 /Account.class
-/Bank.class
 /Atm.class
+/Bank.class
 /Card.class
+/test.class
+/Bank$Account.class
