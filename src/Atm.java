@@ -14,15 +14,17 @@ public class Atm {
 			int accountNum = scan.nextInt();
 			boolean valid = false;
 			while(valid != true){
-					validate(accountNum);
+					valid = validate(accountNum);
 			}
 			String choice = courseofAction();
+			double amount = 0;
 			if(choice == "W"){
-				Withdraw(accountNum);
+				amount = Withdraw(accountNum);
 			}
 			else if(choice == "D"){
-				Deposit(accountNum);
+				amount = Deposit(accountNum);
 			}
+			printReceipt(choice, accountNum, amount);
 		}
 	}
 	
@@ -41,17 +43,19 @@ public class Atm {
 		return scan.next();
 	}
 	
-	public void Withdraw(int accountNum){
+	public double Withdraw(int accountNum){
 		System.out.println("How much would you like to Withdraw?\n");
 		double amount = scan.nextDouble();
-		bank.withdraw(amount);
-		printReceipt("Deposit", accountNum, amount);
+		if(!bank.withdraw(amount)){
+			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
+		}
+		return amount;
 	}
-	public void Deposit(int accountNum){
+	public double Deposit(int accountNum){
 		System.out.println("How much would you like to Deposit?\n");
 		double amount = scan.nextDouble();
 		bank.deposit(amount);
-		printReceipt("Deposit", accountNum, amount);
+		return amount;
 	}
 	
 	public void printReceipt(String action, int accountNum, double amount){
