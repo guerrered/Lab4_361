@@ -12,7 +12,10 @@ public class Atm {
 	public void start(){
 		while(scan.hasNext()== true){
 			int accountNum = scan.nextInt();
-			boolean valid = bank.validate(accountNum);
+			boolean valid = false;
+			while(valid != true){
+					validate(accountNum);
+			}
 			String choice = courseofAction();
 			if(choice == "W"){
 				Withdraw(accountNum);
