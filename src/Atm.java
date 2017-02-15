@@ -37,15 +37,26 @@ public class Atm {
 		int PIN = enterPin();
 		return bank.validate(accountNum, PIN);
 	}
+	public boolean validate(int accountNum, int PIN){
+		System.out.println("Enter Pin");
+		return bank.validate(accountNum, PIN);
+	}
 	
 	public int enterPin(){
 		int PIN = scan.nextInt();
+		return PIN;
+	}
+	public int enterPin(int PIN){
 		return PIN;
 	}
 	
 	public String courseofAction(){
 		System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
 		return scan.next();
+	}
+	public String courseofAction(String coA){
+		System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
+		return coA;
 	}
 	
 	public double Withdraw(int accountNum){
@@ -56,9 +67,22 @@ public class Atm {
 		}
 		return amount;
 	}
+	public double Withdraw(int accountNum, double amount){
+		System.out.println("How much would you like to Withdraw?\n");
+		if(!bank.withdraw(amount)){
+			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
+		}
+		return amount;
+	}
+	
 	public double Deposit(int accountNum){
 		System.out.println("How much would you like to Deposit?\n");
 		double amount = scan.nextDouble();
+		bank.deposit(amount);
+		return amount;
+	}
+	public double Deposit(int accountNum, double amount){
+		System.out.println("How much would you like to Deposit?\n");
 		bank.deposit(amount);
 		return amount;
 	}
