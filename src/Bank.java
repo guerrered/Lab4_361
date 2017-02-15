@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Bank {
 	static List<Account> bankAcc = new ArrayList<Account>();
-	private Account curAccount;
+	private static Account curAccount;
 	
 	public class Account{
 		private int	accountNumber;
@@ -43,12 +43,32 @@ public class Bank {
 	
 	
 	
-	public boolean deposit(){
+	public boolean deposit(double dop){
+		if(dop<0){
+			return false;
+		}
+		else
+		{
+			curAccount.balance+=dop;
+		}
+		
 		return false;
 	}
 	
-	public boolean withdraw(){
-		return false;
+	public boolean withdraw(double wit){
+		if(wit<0)
+		{
+			return false;
+		}
+		else if(wit>curAccount.balance)
+		{
+			return false;
+		}
+		else{
+		curAccount.balance-=wit;
+			
+		return true;
+		}
 	}
 	
 	public String getBalance(){
@@ -66,6 +86,7 @@ public class Bank {
 			acc=bankAcc.get(i);
 			if(acc.getAccountNum()==userIn&&acc.getPin()==pin)
 			{
+				curAccount=acc;
 				return true;
 			}
 		}
