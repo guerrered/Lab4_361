@@ -18,14 +18,17 @@ public class Atm {
 					System.out.println("Incorrect PIN");
 			}
 			String choice = courseofAction();
-			double amount = 0;
-			if(choice == "W"){
-				amount = Withdraw(accountNum);
+			while( choice != "E"){
+				double amount = 0;
+				if(choice == "W"){
+					amount = Withdraw(accountNum);
+				}
+				else if(choice == "D"){
+					amount = Deposit(accountNum);
+				}
+				printReceipt(choice, accountNum, amount);
+				choice = courseofAction();
 			}
-			else if(choice == "D"){
-				amount = Deposit(accountNum);
-			}
-			printReceipt(choice, accountNum, amount);
 		}
 	}
 	
@@ -40,7 +43,7 @@ public class Atm {
 	}
 	
 	public String courseofAction(){
-		System.out.println("To deposit enter 'D' to withdraw enter 'W'\n");
+		System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
 		return scan.next();
 	}
 	
