@@ -20,10 +20,10 @@ public class AtmTest {
 	//Successfully validate	and	withdrawal	of	$20	from account 1234
 	@Test
 	public void testA() {
-		atm.start();
 		//enter account
 		in = new ByteArrayInputStream("6789".getBytes());
 		System.setIn(in);
+		atm.start();
 		//enter pin
 		
 		

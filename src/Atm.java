@@ -33,6 +33,7 @@ public class Atm {
 	}
 	
 	public boolean validate(int accountNum){
+		System.out.println("Enter Pin");
 		int PIN = enterPin();
 		return bank.validate(accountNum, PIN);
 	}
