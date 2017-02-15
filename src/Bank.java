@@ -15,9 +15,24 @@ public class Bank {
 			this.accountNumber = accountNumber;
 			this.balance=balance;
 		}
+		
+		private int getAccountNum()
+		{
+			return accountNumber;
+		}
+		private int getPin()
+		{
+			return pin;
+		}
+		
+		private double getBalance()
+		{
+			return balance;
+		}
+		
 	}
 	
-	public void AccountSetup(){
+	private void AccountSetup(){
 	
 		Account acc1=new Account(1234,6789,80);
 		Account acc2= new Account(6789,4321,60);
@@ -25,6 +40,8 @@ public class Bank {
 		bankAcc.add(acc2);
 		
 	}
+	
+	
 	
 	public boolean deposit(){
 		return false;
@@ -41,8 +58,18 @@ public class Bank {
 		return null;
 	}
 
-	public static boolean validate(int userIn) {
+	public static boolean validate(int userIn,int pin) {
 		// TODO Auto-generated method stub
+		Account acc;
+		for(int i=0;i<bankAcc.size();i++)
+		{
+			acc=bankAcc.get(i);
+			if(acc.getAccountNum()==userIn&&acc.getPin()==pin)
+			{
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
