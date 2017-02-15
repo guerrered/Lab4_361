@@ -5,6 +5,7 @@ public class Bank {
 	static List<Account> bankAcc = new ArrayList<Account>();
 	private static Account curAccount;
 	
+	
 	public class Account{
 		private int	accountNumber;
 		private int pin;
@@ -25,17 +26,13 @@ public class Bank {
 			return pin;
 		}
 		
-		private double getBalance()
-		{
-			return balance;
-		}
 		
 	}
 	
-	private void AccountSetup(){
+	public Bank(){
 	
-		Account acc1=new Account(1234,6789,80);
-		Account acc2= new Account(6789,4321,60);
+		Account acc1=new Account(1234,6789,80.0);
+		Account acc2= new Account(6789,4321,60.0);
 		bankAcc.add(acc1);
 		bankAcc.add(acc2);
 		
@@ -50,9 +47,10 @@ public class Bank {
 		else
 		{
 			curAccount.balance+=dop;
+			return true;
 		}
 		
-		return false;
+		
 	}
 	
 	public boolean withdraw(double wit){
