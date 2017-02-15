@@ -76,7 +76,7 @@ public class Bank {
 		return null;
 	}
 
-	public static boolean validate(int userIn,int pin) {
+	public boolean validate(int userIn,int pin) {
 		// TODO Auto-generated method stub
 		Account acc;
 		for(int i=0;i<bankAcc.size();i++)
