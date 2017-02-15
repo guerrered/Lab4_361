@@ -15,6 +15,7 @@ public class Atm {
 			boolean valid = false;
 			while(valid != true){
 					valid = validate(accountNum);
+					System.out.println("Incorrect PIN");
 			}
 			String choice = courseofAction();
 			double amount = 0;
