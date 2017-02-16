@@ -22,7 +22,7 @@ public class AtmTest {
 	public void testA() {
 		assertEquals(true,atm.validate(1234,6789));
 		atm.Withdraw(1234, 20);
-		assertEquals(60.0,atm.bank.getBalance());
+		assertEquals("$60.0",atm.bank.getBalance());
 		System.out.println(atm.bank.getBalance());
 	}
 	
@@ -31,7 +31,7 @@ public class AtmTest {
 	public void testB(){
 		assertEquals(true,atm.validate(1234,6789));
 		atm.Withdraw(1234,80);
-		assertEquals(0.0,atm.bank.getBalance());
+		assertEquals("$0.0",atm.bank.getBalance());
 		System.out.println(atm.bank.getBalance());
 		
 		
