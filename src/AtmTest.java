@@ -47,8 +47,9 @@ public class AtmTest {
 	@Test
 	public void testD()
 	{
-		atm.validate(6789,4321);
+		assertEquals(true,atm.validate(6789,4321));
 		atm.Deposit(6789, 20);
+		assertEquals("$80.0",atm.bank.getBalance());
 		System.out.println(atm.bank.getBalance());
 		
 	}
