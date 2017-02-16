@@ -46,6 +46,7 @@ public class Bank {
 		}
 		else
 		{
+			System.out.println("Depositing amount: $" +dop);
 			curAccount.balance+=dop;
 			return true;
 		}
@@ -63,6 +64,7 @@ public class Bank {
 			return false;
 		}
 		else{
+			System.out.println("Withdrawing amount: $" +wit);
 		curAccount.balance-=wit;
 			
 		return true;

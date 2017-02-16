@@ -61,6 +61,7 @@ public class Atm {
 	
 	public double Withdraw(int accountNum){
 		System.out.println("How much would you like to Withdraw?\n");
+		System.out.println("Current amount is :"+bank.getBalance());
 		double amount = scan.nextDouble();
 		if(!bank.withdraw(amount)){
 			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
@@ -69,6 +70,7 @@ public class Atm {
 	}
 	public double Withdraw(int accountNum, double amount){
 		System.out.println("How much would you like to Withdraw?\n");
+		System.out.println("Current amount is :"+bank.getBalance());
 		if(!bank.withdraw(amount)){
 			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
 		}
@@ -77,12 +79,14 @@ public class Atm {
 	
 	public double Deposit(int accountNum){
 		System.out.println("How much would you like to Deposit?\n");
+		System.out.println("Current amount is :"+bank.getBalance());
 		double amount = scan.nextDouble();
 		bank.deposit(amount);
 		return amount;
 	}
 	public double Deposit(int accountNum, double amount){
 		System.out.println("How much would you like to Deposit?\n");
+		System.out.println("Current amount is :"+bank.getBalance());
 		bank.deposit(amount);
 		return amount;
 	}
