@@ -10,8 +10,8 @@ public class AtmTest {
 	static Atm atm;
 	ByteArrayInputStream in;
 	
-	@BeforeClass
-	public static void setup()
+	@Before
+	public void setup()
 	{
 		atm = new Atm();
 		
@@ -24,6 +24,32 @@ public class AtmTest {
 		atm.Withdraw(1234, 20);
 		System.out.println(atm.bank.getBalance());
 	}
+	
+	
+	@Test
+	public void testB(){
+		atm.validate(1234,6789);
+		atm.Withdraw(1234,80);
+		System.out.println(atm.bank.getBalance());
+		
+		
+	}
+	
+	@Test
+	public void testC()
+	{
+		assertEquals(false,atm.validate(6789,1234));
+		
+	}
+	
+	@Test
+	public void testD()
+	{
+		atm.validate(6789,4321);
+		atm.Deposit(6789, 20);
+		System.out.println(atm.bank.getBalance());
+		
+	}
 		/*//enter account
 		in = new ByteArrayInputStream("6789".getBytes());
 		System.setIn(in);
@@ -32,6 +58,9 @@ public class AtmTest {
 		
 		
 	}
+	
+	
+	
 	
 	//Successfully validate	and	withdrawal	of	$80	from account 1234
 //	@Test
