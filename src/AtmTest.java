@@ -20,16 +20,18 @@ public class AtmTest {
 	//Successfully validate	and	withdrawal	of	$20	from account 1234
 	@Test
 	public void testA() {
-		atm.validate(1234,6789);
+		assertEquals(true,atm.validate(1234,6789));
 		atm.Withdraw(1234, 20);
+		assertEquals(60.0,atm.bank.getBalance());
 		System.out.println(atm.bank.getBalance());
 	}
 	
 	
 	@Test
 	public void testB(){
-		atm.validate(1234,6789);
+		assertEquals(true,atm.validate(1234,6789));
 		atm.Withdraw(1234,80);
+		assertEquals(0.0,atm.bank.getBalance());
 		System.out.println(atm.bank.getBalance());
 		
 		
