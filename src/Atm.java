@@ -14,83 +14,53 @@ public class Atm {
 			int accountNum = scan.nextInt();
 			boolean valid = false;
 			while(valid != true){
-					valid = validate(accountNum);
-					System.out.println("Incorrect PIN");
+					int PIN = scan.nextInt();
+					valid = validate(accountNum, PIN);
+					if(valid == false){
+						System.out.println("Incorrect PIN");
+					}
 			}
-			String choice = courseofAction();
+			System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
+			String choice = scan.next();
 			while( choice != "E"){
 				double amount = 0;
 				if(choice == "W"){
-					amount = Withdraw(accountNum);
+					System.out.println("How much would you like to Withdraw?");
+					amount = scan.nextDouble();
+					Withdraw(amount);
 				}
 				else if(choice == "D"){
-					amount = Deposit(accountNum);
+					System.out.println("How much would you like to Deposit?");
+					amount = scan.nextDouble();
+					Deposit(amount);
 				}
 				printReceipt(choice, accountNum, amount);
-				choice = courseofAction();
+				System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
+				choice = scan.next();
 			}
 		}
 	}
 	
-	public boolean validate(int accountNum){
-		System.out.println("Enter Pin");
-		int PIN = enterPin();
-		return bank.validate(accountNum, PIN);
-	}
+	
 	public boolean validate(int accountNum, int PIN){
-		System.out.println("Enter Pin");
 		return bank.validate(accountNum, PIN);
 	}
-	
-	public int enterPin(){
-		int PIN = scan.nextInt();
-		return PIN;
-	}
-	public int enterPin(int PIN){
-		return PIN;
-	}
-	
-	public String courseofAction(){
-		System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
-		return scan.next();
-	}
-	public String courseofAction(String coA){
-		System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
-		return coA;
-	}
-	
-	public double Withdraw(int accountNum){
-		System.out.println("How much would you like to Withdraw?\n");
-		System.out.println("Current amount is :"+bank.getBalance());
-		double amount = scan.nextDouble();
-		if(!bank.withdraw(amount)){
-			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
-		}
-		return amount;
-	}
-	public double Withdraw(int accountNum, double amount){
-		System.out.println("How much would you like to Withdraw?\n");
-		System.out.println("Current amount is :"+bank.getBalance());
+
+	public double Withdraw(double amount){
 		if(!bank.withdraw(amount)){
 			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
 		}
 		return amount;
 	}
 	
-	public double Deposit(int accountNum){
-		System.out.println("How much would you like to Deposit?\n");
-		System.out.println("Current amount is :"+bank.getBalance());
-		double amount = scan.nextDouble();
-		bank.deposit(amount);
-		return amount;
-	}
-	public double Deposit(int accountNum, double amount){
-		System.out.println("How much would you like to Deposit?\n");
-		System.out.println("Current amount is :"+bank.getBalance());
-		bank.deposit(amount);
-		return amount;
-	}
 	
+	public double Deposit(double amount){
+		bank.deposit(amount);
+		return amount;
+	}
+	public String getBalance(){
+		return bank.getBalance();
+	}
 	public void printReceipt(String action, int accountNum, double amount){
 		System.out.println(action + "from " + accountNum +" : " + amount);
 	}

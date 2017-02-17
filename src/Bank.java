@@ -31,13 +31,12 @@ public class Bank {
 	
 	public Bank(){
 	
-		Account acc1=new Account(1234,6789,80.0);
-		Account acc2= new Account(6789,4321,60.0);
-		bankAcc.add(acc1);
-		bankAcc.add(acc2);
-		
 	}
 	
+	public void addAccount(int accountNum, int pin, double bal){
+		Account acc = new Account(accountNum, pin, bal);
+		bankAcc.add(acc);
+	}
 	
 	
 	public boolean deposit(double dop){
@@ -65,9 +64,8 @@ public class Bank {
 		}
 		else{
 			System.out.println("Withdrawing amount: $" +wit);
-		curAccount.balance-=wit;
-			
-		return true;
+			curAccount.balance-=wit;
+			return true;
 		}
 	}
 	

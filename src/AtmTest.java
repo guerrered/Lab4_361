@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+//import Bank.Account;
+
 public class AtmTest {
 	static Atm atm;
 	ByteArrayInputStream in;
@@ -14,25 +16,26 @@ public class AtmTest {
 	public void setup()
 	{
 		atm = new Atm();
-		
+		atm.bank.addAccount(1234,6789,80.0);
+		atm.bank.addAccount(6789,4321,60.0);
 	}
 
 	//Successfully validate	and	withdrawal	of	$20	from account 1234
 	@Test
 	public void testA() {
 		assertEquals(true,atm.validate(1234,6789));
-		atm.Withdraw(1234, 20);
-		assertEquals("$60.0",atm.bank.getBalance());
-		System.out.println(atm.bank.getBalance());
+		atm.Withdraw(20);
+		assertEquals("$60.0",atm.getBalance());
+		System.out.println(atm.getBalance());
 	}
 	
 	
 	@Test
 	public void testB(){
 		assertEquals(true,atm.validate(1234,6789));
-		atm.Withdraw(1234,80);
-		assertEquals("$0.0",atm.bank.getBalance());
-		System.out.println(atm.bank.getBalance());
+		atm.Withdraw(80);
+		assertEquals("$0.0",atm.getBalance());
+		System.out.println(atm.getBalance());
 		
 		
 	}
@@ -48,9 +51,9 @@ public class AtmTest {
 	public void testD()
 	{
 		assertEquals(true,atm.validate(6789,4321));
-		atm.Deposit(6789, 20);
-		assertEquals("$80.0",atm.bank.getBalance());
-		System.out.println(atm.bank.getBalance());
+		atm.Deposit(20);
+		assertEquals("$80.0",atm.getBalance());
+		System.out.println(atm.getBalance());
 		
 	}
 		/*//enter account
