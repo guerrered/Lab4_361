@@ -8,17 +8,19 @@ public class Atm {
 	Scanner scan;
 	Display DIS;
 	Printer printer;
-
+	CardReader cr;
+	
 	public Atm(){
 		bank = new Bank();
 		scan = new Scanner(System.in);
 		DIS = new Display();
 		printer = new Printer();
+		cr = new CardReader();
 	}
 	
 	public void start(){
-		while(){
-			int accountNum = scan.nextInt();
+		while(scan.hasNext()){
+			int accountNum = cr.read();
 			boolean valid = false;
 			
 			while(valid != true){
@@ -54,7 +56,7 @@ public class Atm {
 
 	public double Withdraw(double amount){
 		if(!bank.withdraw(amount)){
-			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
+			DIS.Print("Not enough funds\nBalance: " + bank.getBalance() );
 		}
 		return amount;
 	}
