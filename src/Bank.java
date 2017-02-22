@@ -91,6 +91,10 @@ public class Bank {
 		
 		return false;
 	}
+	
+	public void closeInstance(){
+		curAccount = null;
+	}
 
 
 }

@@ -69,7 +69,7 @@ public class Simulator {
 		//Dislpay()
 		 String cnt=scan.nextLine();
 		 String sp[]=cnt.split(" ");
-		 atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[1]));
+		 System.out.println(atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[0])));
 		  break;
 		case("BUTTON"):
 			commandBal(instructions[1],scan);
@@ -86,19 +86,16 @@ public class Simulator {
 		{
 		case("W"):
 			//Dislpay();
-		 System.out.println("How much you want to withdraw?");
-		 String cnt=scan.nextLine();
-		 String sp[]=cnt.split(" ");
-		 atm.Withdraw(Double.parseDouble(sp[1]));		
+			atm.DIS.Print("How much do you want to withdraw");
+			System.out.println(atm.Withdraw(Double.parseDouble(scan.nextLine())));		
 			break;
 		case("CB"):
 			//Dislpay()
-			atm.getBalance();
+			System.out.println(atm.getBalance());
 			break;
 		case("CANCEL"):
-		//Dislpay()
-			
-			
+			atm.Cancel();		
+			//Display();
 			break;
 		
 		}

@@ -9,6 +9,7 @@ public class Atm {
 	Display DIS;
 	Printer printer;
 	CardReader cr;
+	CashDispenser CD;
 	
 	public Atm(){
 		bank = new Bank();
@@ -16,6 +17,9 @@ public class Atm {
 		DIS = new Display();
 		printer = new Printer();
 		cr = new CardReader();
+		CD = new CashDispenser();
+		bank.addAccount(1234,6789,80.0);
+		bank.addAccount(6789,4321,60.0);
 	}
 	
 	public void start(){
@@ -58,6 +62,9 @@ public class Atm {
 		if(!bank.withdraw(amount)){
 			DIS.Print("Not enough funds\nBalance: " + bank.getBalance() );
 		}
+		else{
+			CD.CashDispen(amount);
+		}
 		return amount;
 	}
 	
@@ -85,5 +92,9 @@ public class Atm {
 	    Date dateobj = new Date();
 	    
 		return df.format(dateobj);
+	}
+	
+	public void Cancel(){
+		bank.closeInstance();
 	}
 }
