@@ -11,7 +11,7 @@ public class Simulator {
  ArrayList<String> list =new ArrayList<String>();
     Atm atm;	
     Card c1;
-    double num;
+
 	public Simulator(){
 	
 		    atm=new Atm();
@@ -65,10 +65,12 @@ public class Simulator {
 		switch(instructions[0]){
 		case("CARDREAD"):
 		c1 = new Card(Integer.parseInt(instructions[1]));
-			break;
-		case("NUM"):
-			num=Double.parseDouble(instructions[1]);
-			break;
+		System.out.println("Please enter your pin");	
+		//Dislpay()
+		 String cnt=scan.nextLine();
+		 String sp[]=cnt.split(" ");
+		 atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[1]));
+		  break;
 		case("BUTTON"):
 			commandBal(instructions[1],scan);
 	        break;
@@ -84,9 +86,10 @@ public class Simulator {
 		{
 		case("W"):
 			//Dislpay();
-		System.out.println("How much you want to withdraw?");
-		 double cnt=scan.nextDouble();
-		 atm.Withdraw(cnt);		
+		 System.out.println("How much you want to withdraw?");
+		 String cnt=scan.nextLine();
+		 String sp[]=cnt.split(" ");
+		 atm.Withdraw(Double.parseDouble(sp[1]));		
 			break;
 		case("CB"):
 			//Dislpay()
