@@ -2,10 +2,12 @@
 public class Printer {
 
 	
-	public Printer(String str)
-	{
+	public Printer()
+	{	
+	}
+	
+	public void Print(String str){
 		System.out.println(str);
-		
 	}
 	
 	

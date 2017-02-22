@@ -1,7 +1,9 @@
 
 public class Display {
-	public Display(String s){
-		
-		System.out.println(s);
+	public Display(){
+	}
+	
+	public void Print(String str){
+		System.out.println("Display: " + str);
 	}
 }
