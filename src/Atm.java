@@ -1,3 +1,6 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Atm {
@@ -71,5 +74,12 @@ public class Atm {
 	}
 	public void printReceipt(String action, int accountNum, double amount){
 		System.out.println(action + "from " + accountNum +" : " + amount);
+	}
+	
+	public String getCurrentTime(){
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+	    Date dateobj = new Date();
+	    
+		return df.format(dateobj);
 	}
 }
