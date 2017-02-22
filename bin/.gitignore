@@ -1,6 +1,13 @@
 /Account.class
 /Atm.class
+/AtmTest.class
+/Bank$Account.class
 /Bank.class
 /Card.class
-/test.class
-/Bank$Account.class
+/Printer.class
+/CashDispenser.class
+/Simulator.class
+/.DS_Store
+/CardReader.class
+/Dislpay.class
+/Display.class

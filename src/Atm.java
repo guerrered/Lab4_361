@@ -1,80 +1,89 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Atm {
 	Bank bank;
 	Scanner scan;
-
+	Display DIS;
+	Printer printer;
+	CardReader cr;
+	
 	public Atm(){
 		bank = new Bank();
 		scan = new Scanner(System.in);
+		DIS = new Display();
+		printer = new Printer();
+		cr = new CardReader();
 	}
 	
 	public void start(){
-		while(scan.hasNext()== true){
-			int accountNum = scan.nextInt();
+		while(scan.hasNext()){
+			int accountNum = cr.read();
 			boolean valid = false;
+			
 			while(valid != true){
-					valid = validate(accountNum);
-					System.out.println("Incorrect PIN");
+					DIS.Print("Enter PIN");
+					int PIN = getNum();
+					valid = validate(accountNum, PIN);
+					if(valid == false){
+						DIS.Print("Incorrect PIN");
+					}
 			}
-			String choice = courseofAction();
-			while( choice != "E"){
+			DIS.Print("To Withdraw enter W\n to check balance enter CB\n to end transactino enter CANCEL");
+			String choice = getChoice();
+			while( choice != "CANCEL"){
 				double amount = 0;
 				if(choice == "W"){
-					amount = Withdraw(accountNum);
+					DIS.Print("How much would you like to Withdraw?");
+					amount = getNum();
+					Withdraw(amount);
 				}
-				else if(choice == "D"){
-					amount = Deposit(accountNum);
+				else if(choice == "CB"){
+					DIS.Print("Balance: " + bank.getBalance());
 				}
-				printReceipt(choice, accountNum, amount);
-				choice = courseofAction();
+				printReceipt(choice, amount);
+				DIS.Print("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
+				choice = getChoice();
 			}
 		}
 	}
 	
-	public boolean validate(int accountNum){
-		int PIN = enterPin();
+	public boolean validate(int accountNum, int PIN){
 		return bank.validate(accountNum, PIN);
 	}
-	
-	public int enterPin(){
-		int PIN = scan.nextInt();
-		return PIN;
-	}
-	
-	public String courseofAction(){
-		System.out.println("To deposit enter 'D'\n to withdraw enter 'W'\nto exit enter 'E'");
-		return scan.next();
-	}
-	
-	public double Withdraw(int accountNum){
-		System.out.println("How much would you like to Withdraw?\n");
-		double amount = scan.nextDouble();
+
+	public double Withdraw(double amount){
 		if(!bank.withdraw(amount)){
-			System.out.println("Not enough funds\nBalance: " + bank.getBalance() );
+			DIS.Print("Not enough funds\nBalance: " + bank.getBalance() );
 		}
 		return amount;
 	}
-	public double Deposit(int accountNum){
-		System.out.println("How much would you like to Deposit?\n");
-		double amount = scan.nextDouble();
+	
+	public double Deposit(double amount){
 		bank.deposit(amount);
 		return amount;
 	}
+	public String getBalance(){
+		return bank.getBalance();
+	}
 	
-	public void printReceipt(String action, int accountNum, double amount){
-		System.out.println(action + "from " + accountNum +" : " + amount);
+	public int getNum(){
+		return Integer.parseInt(scan.nextLine());
+	}
+	
+	public String getChoice(){
+		return scan.nextLine();
+	}
+	public void printReceipt(String action,  double amount){
+		printer.Print(getCurrentTime() + action + " : " + amount);
+	}
+	
+	public String getCurrentTime(){
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+	    Date dateobj = new Date();
+	    
+		return df.format(dateobj);
 	}
 }
-/*
- * String userIn;
-		Scanner stdIn = new Scanner(System.in);
-		System.out.println("ATM is ready for use!");
-		System.out.println("---------------------");
-		System.out.println("Please enter your account number!");
-		userIn = stdIn.nextInt();
-		if(!Bank.validate(userIn)){
-			System.out.println("Account not found. Exiting");
-			System.exit(0);
-		}
- */

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
-	static List<Account> bankAcc = new ArrayList<Account>();
+	 List<Account> bankAcc = new ArrayList<Account>();
 	private static Account curAccount;
 	
 	
@@ -31,13 +31,12 @@ public class Bank {
 	
 	public Bank(){
 	
-		Account acc1=new Account(1234,6789,80.0);
-		Account acc2= new Account(6789,4321,60.0);
-		bankAcc.add(acc1);
-		bankAcc.add(acc2);
-		
 	}
 	
+	public void addAccount(int accountNum, int pin, double bal){
+		Account acc = new Account(accountNum, pin, bal);
+		bankAcc.add(acc);
+	}
 	
 	
 	public boolean deposit(double dop){
@@ -46,6 +45,7 @@ public class Bank {
 		}
 		else
 		{
+			System.out.println("Depositing amount: $" +dop);
 			curAccount.balance+=dop;
 			return true;
 		}
@@ -63,9 +63,9 @@ public class Bank {
 			return false;
 		}
 		else{
-		curAccount.balance-=wit;
-			
-		return true;
+			System.out.println("Withdrawing amount: $" +wit);
+			curAccount.balance-=wit;
+			return true;
 		}
 	}
 	
