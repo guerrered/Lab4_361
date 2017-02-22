@@ -10,17 +10,11 @@ public class Simulator {
 
 	
 	
-	
-	
-	
-	
-	
-	
  ArrayList<String> list =new ArrayList<String>();
 	
 	public Simulator(){
 	
-		
+		    Atm atm=new Atm();
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Enter 'C' for console input or 'F' for file input\n");
 			String choice = scan.nextLine();
@@ -32,7 +26,7 @@ public class Simulator {
 				System.out.println("Enter the name of the input file");
 				String fileName = scan.nextLine();
 				scan.close();
-				readFromFile("transactions.txt");	
+				readFromFile(fileName);	
 			}
 			else{
 				System.out.println("Reading from console");
@@ -43,10 +37,10 @@ public class Simulator {
 		
 	public void readFromFile(String file)
 	{
-	try(BufferedReader buff = new BufferedReader(new FileReader("transactions.txt"))){
+	try(BufferedReader buff = new BufferedReader(new FileReader(file))){
 		String currentLine;
 		while((currentLine = buff.readLine()) != null){
-		//	commandExec(currentLine);
+			commandExec(currentLine);
 		}
 	}catch(IOException e){
 		e.printStackTrace();
@@ -57,14 +51,10 @@ public class Simulator {
 	public void readFromConsole(Scanner scan){
 		//whole system exits with exit command
 		String command;
-		long timeStamp;
-		String toExec;
 		System.out.println("Enter Command\n");
 		while(scan.hasNext()){
 			command = scan.nextLine();
-			timeStamp = System.currentTimeMillis();
-			toExec = timeStamp + " " + command;
-			commandExec(toExec);
+			commandExec(command);
 			System.out.println("Enter Command\n");
 		}
 	}
@@ -72,58 +62,18 @@ public class Simulator {
 	public void commandExec(String command){
 		System.out.println(command);
 		String [] instructions = command.split(" ");
-		switch(instructions[1]){
+		switch(instructions[0]){
 		case("CARDREAD"):
+			
 			
 			break;
 		case("NUM"):
 			
 			break;
 		case("DIS"):
-			this.exit();
+			
 			break;
-		case("Time"):
-			console.Time();
-			break;
-		case("newRun"):
-			console.newRun();
-			break;
-		case("endRun"):
-			console.endRun(Integer.parseInt(instructions[2]));//might have to find and remove run with this name/ number ;
-			break;
-		case("Swap"):
-			console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
-			break;
-		case("DNF"):
-			console.DNF(Integer.parseInt(instructions[2]));
-			break;
-		case("Clear"):
-			console.Clear(Integer.parseInt(instructions[2]));
-			break;
-		case("Cancel"):
-			console.Cancel();
-			break;
-		case("Print"):
-			console.Print();
-			break;
-		case("Connect"):
-			console.Connect();
-			break;
-		case("Disconnect"):
-			console.Disconnect();
-			break;
-		case("Tog"):
-			console.Tog();
-			break;
-		case("Trig"):
-			console.Trig(Integer.parseInt(instructions[2]));
-			break;
-		case("Start"):
-			console.Start();
-			break;
-		case("Finish"):
-			console.Finish();
-			break;
+	
 		default:
 			System.out.println("Not a valid command\n");
 			break;
