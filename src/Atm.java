@@ -61,19 +61,15 @@ public class Atm {
 	public String getBalance(){
 		return bank.getBalance();
 	}
+	
+	public int getPIN(){
+		return Integer.parseInt(scan.nextLine());
+	}
+	
+	public int getNum(){
+		return Integer.parseInt(scan.nextLine());
+	}
 	public void printReceipt(String action, int accountNum, double amount){
 		System.out.println(action + "from " + accountNum +" : " + amount);
 	}
 }
-/*
- * String userIn;
-		Scanner stdIn = new Scanner(System.in);
-		System.out.println("ATM is ready for use!");
-		System.out.println("---------------------");
-		System.out.println("Please enter your account number!");
-		userIn = stdIn.nextInt();
-		if(!Bank.validate(userIn)){
-			System.out.println("Account not found. Exiting");
-			System.exit(0);
-		}
- */
