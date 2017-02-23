@@ -65,10 +65,17 @@ public class Simulator {
 		switch(instructions[0]){
 		case("CARDREAD"):
 		c1 = new Card(Integer.parseInt(instructions[1]));
+		
+		while(true)
+		{
 		atm.DIS.Print("Please enter your pin");
 		 String cnt=scan.nextLine();
 		 String sp[]=cnt.split(" ");
-		 System.out.println(atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[0])));
+		 if(atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[0])))
+		 {
+			 break;
+		 }
+		}
 		  break;
 		case("BUTTON"):
 			commandBal(instructions[1],scan);
