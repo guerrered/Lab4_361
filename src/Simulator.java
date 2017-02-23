@@ -79,8 +79,9 @@ public class Simulator {
 		{
 		atm.DIS.Print("Please enter your pin");
 		 String cnt=scan.nextLine();
+		 System.out.println(cnt);
 		 String sp[]=cnt.split(" ");
-		 if(atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[0])))
+		 if(atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[1])))
 		 {
 			 break;
 		 }
@@ -103,11 +104,14 @@ public class Simulator {
 	
 	public void commandBal(String str,Scanner scan)
 	{
+		
 		switch(str)
 		{
 		case("W"):
 			atm.DIS.Print("How much do you want to withdraw");
-			System.out.println(atm.Withdraw(Double.parseDouble(scan.nextLine())));		
+			//System.out.println(atm.Withdraw(Double.parseDouble(scan.next())));
+			String sp[]=scan.nextLine().split(" ");
+			System.out.println(atm.Withdraw(Double.parseDouble(sp[1])));
 			break;
 		case("CB"):
 			atm.DIS.Print("Balance is: " +atm.getBalance());;
