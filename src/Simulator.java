@@ -1,4 +1,7 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,8 +28,10 @@ public class Simulator {
 			if(choice.equalsIgnoreCase("f")){
 				System.out.println("Enter the name of the input file");
 				String fileName = scan.nextLine();
+				File file = new File(fileName);
+				String path = file.getAbsolutePath();
 				scan.close();
-				readFromFile(fileName);	
+				readFromFile(path);	
 			}
 			else{
 				System.out.println("Reading from console");
@@ -37,12 +42,16 @@ public class Simulator {
 		
 	public void readFromFile(String file)
 	{
-	try(BufferedReader buff = new BufferedReader(new FileReader(file))){
+	//try(BufferedReader buff = new BufferedReader(new FileReader(file))){
+	try(Scanner buff = new Scanner(new FileInputStream(file))){	
 		String currentLine;
-		while((currentLine = buff.readLine()) != null){
-			commandExec(currentLine,null);
+		while((buff.hasNext())){
+			currentLine = buff.nextLine();
+			//currentLine = buff.next();
+			commandExec(currentLine,buff);
 		}
-	}catch(IOException e){
+	} catch (FileNotFoundException e) {
+		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	
