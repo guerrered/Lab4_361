@@ -121,5 +121,9 @@ public class Atm {
 	
 	public void Cancel(){
 		bank.closeInstance();
+		printer.Print("<"+lastTime+">"+"<"+lastAct+">"+"<"+lastAmount+">");
+		lastTime=null;
+		lastAct=null;
+		lastAmount=null;
 	}
 }
