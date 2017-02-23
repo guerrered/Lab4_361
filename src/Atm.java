@@ -10,6 +10,9 @@ public class Atm {
 	Printer printer;
 	CardReader cr;
 	CashDispenser CD;
+	String lastTime;
+	String lastAct;
+	Double lastAmount; 
 	
 	public Atm(){
 		bank = new Bank();
@@ -58,18 +61,40 @@ public class Atm {
 		return bank.validate(accountNum, PIN);
 	}
 
+	public void LastTractT()
+	{ 
+		lastTime=getCurrentTime();
+		
+	}
+	
+	public void LastAct(String str)
+	{
+		lastAct=str;
+	}
+	
+	public void LastAmount(double cnt)
+	{
+		lastAmount=cnt;
+	}
+	
 	public double Withdraw(double amount){
 		if(!bank.withdraw(amount)){
 			DIS.Print("Not enough funds\nBalance: " + bank.getBalance() );
 		}
 		else{
 			CD.CashDispen(amount);
+			LastTractT();
+			LastAmount(amount);
+			LastAct("Withdraw");
 		}
 		return amount;
 	}
 	
 	public double Deposit(double amount){
 		bank.deposit(amount);
+		LastTractT();
+		LastAmount(amount);
+		LastAct("Deposit");
 		return amount;
 	}
 	public String getBalance(){
