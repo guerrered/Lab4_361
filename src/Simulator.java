@@ -65,8 +65,7 @@ public class Simulator {
 		switch(instructions[0]){
 		case("CARDREAD"):
 		c1 = new Card(Integer.parseInt(instructions[1]));
-		System.out.println("Please enter your pin");	
-		//Dislpay()
+		atm.DIS.Print("Please enter your pin");
 		 String cnt=scan.nextLine();
 		 String sp[]=cnt.split(" ");
 		 System.out.println(atm.validate(Integer.parseInt(instructions[1]), Integer.parseInt(sp[0])));
@@ -74,6 +73,12 @@ public class Simulator {
 		case("BUTTON"):
 			commandBal(instructions[1],scan);
 	        break;
+		case("DIS"):
+			atm.DIS.Print(instructions[1]);
+			break;
+		case("PRINT"):
+			atm.printer.Print(instructions[1]);
+			break;
 		default:
 			System.out.println("Not a valid command\n");
 			break;
@@ -85,13 +90,11 @@ public class Simulator {
 		switch(str)
 		{
 		case("W"):
-			//Dislpay();
 			atm.DIS.Print("How much do you want to withdraw");
 			System.out.println(atm.Withdraw(Double.parseDouble(scan.nextLine())));		
 			break;
 		case("CB"):
-			//Dislpay()
-			System.out.println(atm.getBalance());
+			atm.DIS.Print("Balance is: " +atm.getBalance());;
 			break;
 		case("CANCEL"):
 			atm.Cancel();		
